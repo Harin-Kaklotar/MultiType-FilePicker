@@ -235,6 +235,12 @@ public class ImagePickActivity extends BaseActivity {
     private boolean findAndAddTakenImage(List<ImageFile> list) {
         for (ImageFile imageFile : list) {
             if (imageFile.getPath().equals(mAdapter.mImagePath)) {
+                // fix https://github.com/fishwjy/MultiType-FilePicker/issues/49
+                boolean contains = mSelectedList.contains(imageFile);
+                if (contains) {
+                    return true;
+                }
+                // fix 
                 mSelectedList.add(imageFile);
                 mCurrentNumber++;
                 mAdapter.setCurrentNumber(mCurrentNumber);
